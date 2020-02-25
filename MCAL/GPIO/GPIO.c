@@ -7,10 +7,8 @@
 #include "STD_Types.h"
 #include "GPIO.h"
 
-#define CHECK_PORT(PORT) (PORT == PORT_A || PORT == PORT_B ||PORT == PORT_C ||PORT == PORT_D)
+#define CHECK_PORT(PORT) (PORT == PORT_A || PORT == PORT_B ||PORT == PORT_C ||PORT == PORT_D||PORT == PORT_E||PORT == PORT_F)
 #define CHECK_PIN(PIN) (PIN == PIN_0 ||PIN == PIN_1 || PIN == PIN_2 ||PIN == PIN_3 ||PIN == PIN_4 ||PIN == PIN_5 ||PIN == PIN_6 ||PIN == PIN_7)
-#define CHECK_MODE(MODE) (MODE == IP_PULL_UP ||MODE == IP_PULL_DOWN ||MODE == OP_PUSH_PULL )
-
 
 /*
 #define GPIO_O_DATA             0x00000000  // GPIO Data
@@ -45,25 +43,70 @@
 #define GPIO_O_PP               0x00000FC0  // GPIO Peripheral Property
 #define GPIO_O_PC               0x00000FC4  // GPIO Peripheral Configuration
 */
-
+typedef struct 
+{
+  u32 DATA;
+  u32 DIR;
+  u32 IS;
+  u32 IBE;
+  u32 IEV;
+  u32 IM;
+  u32 RIS;
+  u32 MIS;
+  u32 ICR;
+  u32 AFSEL;
+  u32 DR2R;
+  u32 DR4R;
+  u32 DR8R;
+  u32 ODR;
+  u32 PUR;
+  u32 PDR;
+  u32 SLR;
+  u32 DEN;
+  u32 LOCK;
+  u32 CR;
+  u32 AMSEL;
+  u32 PCTL;
+  u32 ADCCTL;
+  u32 DMACTL;
+  u32 SI;
+  u32 DR12R;
+  u32 WAKEPEN;
+  u32 WAKELVL;
+  u32 WAKESTAT;
+  u32 PP;
+  u32 PC;
+}GPIO_t;
 #define PORTA_BASE_ADDRESS 0x40010800
 
 
-error_status GPIO_Init (u8 Port, u8 Pin, u8 Mode)
+error_status GPIO_Init (u32 Port, u8 Pin, u8 Mode)
 {
-  u8 localError = E_OK;
+  GPIO_t * MyPort = ((GPIO_t *)Port); 
+  error_status localError = E_OK;
   if (CHECK_PORT(Port))
   {
     if (CHECK_PIN(Pin))
     {
-      if (CHECK_MODE(MODE))
-      {
-        
-      }
-      else
-      {
-        localError = E_NOK;
-      }
+        if (Mode== OP_PUSH_PULL)
+        {
+          MyPort->DIR|=(u32)(1<<Pin);
+        }
+        else if (Mode == IP_PULL_UP)
+        {
+          MyPort->DIR &= ~(u32)(1<<Pin);
+          MyPort->PUR = (u32)(1<<Pin);
+        }
+        else if (Mode == IP_PULL_DOWN)
+        {
+          MyPort->DIR &= ~(u32)(1<<Pin);
+          MyPort->PDR = (u32)(1<<Pin);
+        }
+        else
+        {
+          localError = E_NOK;
+        }
+    
     }
     else
     {
@@ -76,11 +119,11 @@ error_status GPIO_Init (u8 Port, u8 Pin, u8 Mode)
   }
   return localError;
 }
-error_status GPIO_WritePin (u8 Port, u8 Pin, u8 Value)
+error_status GPIO_WritePin (u32 Port, u8 Pin, u8 Value)
 {
-  
+  u
 }
-error_status GPIO_ReadPin (u8 Port, u8 Pin, u8 * Data)
+error_status GPIO_ReadPin (u32 Port, u8 Pin, u8 * Data)
 {
   
 }
