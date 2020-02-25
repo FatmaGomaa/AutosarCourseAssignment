@@ -5,16 +5,41 @@
 *********************************/
 #include "STD_Types.h"
 #include "DoorSensor.h"
-
+#include "SysClk.h"
 error_status DoorSensor_Init (u8 doorChannel)
 {
   error_status localError=E_OK;
-  if (DoorChannel == DOOR1)
+  if (doorChannel == DOOR1)
   {
+    if (DOOR1_PORT == PORT_A)
+      localError=RCGCGPIO_EnablePeripheralClock(SYSCTL_RCGCGPIO_R0);
+    else if (DOOR1_PORT == PORT_B)
+      localError=RCGCGPIO_EnablePeripheralClock(SYSCTL_RCGCGPIO_R1);
+    else if (DOOR1_PORT == PORT_C)
+      localError=RCGCGPIO_EnablePeripheralClock(SYSCTL_RCGCGPIO_R2);
+    else if (DOOR1_PORT == PORT_D)
+      localError=RCGCGPIO_EnablePeripheralClock(SYSCTL_RCGCGPIO_R3);
+    else if (DOOR1_PORT == PORT_E)
+      localError=RCGCGPIO_EnablePeripheralClock(SYSCTL_RCGCGPIO_R4);
+    else if (DOOR1_PORT == PORT_F)
+      localError=RCGCGPIO_EnablePeripheralClock(SYSCTL_RCGCGPIO_R5);
+    
     localError=GPIO_Init (DOOR1_PORT,DOOR1_PIN,DOOR1_OPERATION_MODE);
   }
-  else if (DoorChannel == DOOR2)
+  else if (doorChannel == DOOR2)
   {
+        if (DOOR2_PORT == PORT_A)
+      localError=RCGCGPIO_EnablePeripheralClock(SYSCTL_RCGCGPIO_R0);
+    else if (DOOR2_PORT == PORT_B)
+      localError=RCGCGPIO_EnablePeripheralClock(SYSCTL_RCGCGPIO_R1);
+    else if (DOOR2_PORT == PORT_C)
+      localError=RCGCGPIO_EnablePeripheralClock(SYSCTL_RCGCGPIO_R2);
+    else if (DOOR2_PORT == PORT_D)
+      localError=RCGCGPIO_EnablePeripheralClock(SYSCTL_RCGCGPIO_R3);
+    else if (DOOR2_PORT == PORT_E)
+      localError=RCGCGPIO_EnablePeripheralClock(SYSCTL_RCGCGPIO_R4);
+    else if (DOOR2_PORT == PORT_F)
+      localError=RCGCGPIO_EnablePeripheralClock(SYSCTL_RCGCGPIO_R5);
     localError=GPIO_Init (DOOR1_PORT,DOOR1_PIN,DOOR2_OPERATION_MODE);
   }
   else
@@ -26,11 +51,11 @@ error_status DoorSensor_Init (u8 doorChannel)
 error_status DoorSensor_ReadStatus (u8 doorChannel,u8 * status)
 {
     error_status localError=E_OK;
-  if (DoorChannel == DOOR1)
+  if (doorChannel == DOOR1)
   {
     localError=GPIO_GetPinValue (DOOR1_PORT,DOOR1_PIN,status);
   }
-  else if (DoorChannel == DOOR2)
+  else if (doorChannel == DOOR2)
   {
     localError=GPIO_GetPinValue (DOOR1_PORT,DOOR1_PIN,status);
   }
