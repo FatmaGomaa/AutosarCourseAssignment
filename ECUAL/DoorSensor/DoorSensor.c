@@ -8,7 +8,7 @@
 
 error_status DoorSensor_Init (u8 doorChannel)
 {
-  u8 localError=E_OK;
+  error_status localError=E_OK;
   if (DoorChannel == DOOR1)
   {
     localError=GPIO_Init (DOOR1_PORT,DOOR1_PIN,DOOR1_OPERATION_MODE);
@@ -25,7 +25,7 @@ error_status DoorSensor_Init (u8 doorChannel)
 }
 error_status DoorSensor_ReadStatus (u8 doorChannel,u8 * status)
 {
-    u8 localError=E_OK;
+    error_status localError=E_OK;
   if (DoorChannel == DOOR1)
   {
     localError=GPIO_GetPinValue (DOOR1_PORT,DOOR1_PIN,status);

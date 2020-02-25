@@ -121,7 +121,25 @@ error_status GPIO_Init (u32 Port, u8 Pin, u8 Mode)
 }
 error_status GPIO_WritePin (u32 Port, u8 Pin, u8 Value)
 {
-  u
+    GPIO_t * MyPort = ((GPIO_t *)Port); 
+  error_status localError = E_OK;
+  if (CHECK_PORT(Port))
+  {
+    if (CHECK_PIN(Pin))
+    {
+      MyPort->DATA=(u32)(Value<<Pin) ;
+    
+    }
+    else
+    {
+      localError = E_NOK;
+    }
+  }
+  else
+  {
+    localError = E_NOK;
+  }
+  return localError;
 }
 error_status GPIO_ReadPin (u32 Port, u8 Pin, u8 * Data)
 {
