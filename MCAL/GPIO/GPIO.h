@@ -21,7 +21,9 @@
 #define PIN_6 6
 #define PIN_7 7
 /* GPIO operation Modes*/
- #define IP_PULL_UP 1
+#define IP_PULL_UP   1
+#define IP_PULL_DOWN 2
+#define OP_PUSH_PULL 3
  
  
 
@@ -30,4 +32,4 @@ error_status GPIO_Init (u8 Port, u8 Pin, u8 Mode);
 /*Dscription: This API shall Write GPIO pin output value*/
 error_status GPIO_WritePin (u8 Port, u8 Pin, u8 Value);
 /*Dscription: This API shall read GPIO pin input value*/*/
-error_status GPIO_ReadPin (u8 Port, u8 Pin, u8 * Value);
+error_status GPIO_ReadPin (u8 Port, u8 Pin, u8 * Data);
