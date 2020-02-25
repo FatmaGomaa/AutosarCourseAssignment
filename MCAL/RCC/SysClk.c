@@ -1,8 +1,8 @@
 #include "STD_TYPES.h"
 #include "SysClk.h"
 
-ERROR_STATUS RCGCGPIO_EnablePeripheralClock(u32 Copy_u32GPIO_Peripheral){
-	ERROR_STATUS Local_ErrorStatus = NOT_OK;
+error_status RCGCGPIO_EnablePeripheralClock(u32 Copy_u32GPIO_Peripheral){
+	error_status Local_ErrorStatus = NOT_OK;
 	SYSCTL_RCGCGPIO |= Copy_u32GPIO_Peripheral;
 	
 	if((SYSCTL_RCGCGPIO & Copy_u32GPIO_Peripheral) == Copy_u32GPIO_Peripheral){
@@ -12,8 +12,8 @@ ERROR_STATUS RCGCGPIO_EnablePeripheralClock(u32 Copy_u32GPIO_Peripheral){
 	return Local_ErrorStatus;
 }
 
-ERROR_STATUS RCGCGPIO_DisablePeripheralClock(u32 Copy_u32GPIO_Peripheral){
-	ERROR_STATUS Local_ErrorStatus = NOT_OK;
+error_status RCGCGPIO_DisablePeripheralClock(u32 Copy_u32GPIO_Peripheral){
+	error_status Local_ErrorStatus = NOT_OK;
 	SYSCTL_RCGCGPIO &=~ Copy_u32GPIO_Peripheral;
 	
 	if((SYSCTL_RCGCGPIO & Copy_u32GPIO_Peripheral) == Copy_u32GPIO_Peripheral){
@@ -23,9 +23,9 @@ ERROR_STATUS RCGCGPIO_DisablePeripheralClock(u32 Copy_u32GPIO_Peripheral){
 	return Local_ErrorStatus;
 }
 
-extern ERROR_STATUS RCC_CrystalOscillatorInit(u32 Copy_u32OscillatorSource, u32 Copy_u32CrystalValue){
+extern error_status RCC_CrystalOscillatorInit(u32 Copy_u32OscillatorSource, u32 Copy_u32CrystalValue){
 	u32 SYSCTL_RCC_temp;
-	ERROR_STATUS Local_ErrorStatus = NOT_OK;
+	error_status Local_ErrorStatus = NOT_OK;
 	SYSCTL_RCC |= SYSCTL_RCC_BYPASS;
 	SYSCTL_RCC_temp = SYSCTL_RCC;
 	SYSCTL_RCC_temp &= ~(SYSCTL_RCC_OSCSRC_M);
