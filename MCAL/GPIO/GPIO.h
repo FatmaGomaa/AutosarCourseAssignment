@@ -1,9 +1,12 @@
 /********************************
 *Author: Mostafa Ghareeb        *
 *        Mohanad Fawzy Sallam   * 
-*Version: v01                   *
-*Date: 25/02/2020               *
+*Version: v1.1                  *
+*Date: 26/02/2020               *
 *********************************/
+#ifndef GPIO_H_
+#define GPIO_H_
+
 /* Ports Numbers*/
 #define PORT_A 0x40004000
 #define PORT_B 0x40005000
@@ -33,3 +36,5 @@ error_status GPIO_Init (u32 Port, u8 Pin, u8 Mode);
 error_status GPIO_WritePin (u32 Port, u8 Pin, u8 Value);
 /*Dscription: This API shall read GPIO pin input value*/
 error_status GPIO_ReadPin (u32 Port, u8 Pin, u8 * Data);
+
+#endif

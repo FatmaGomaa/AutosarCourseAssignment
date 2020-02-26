@@ -7,9 +7,9 @@
 #define  lAMP1_CHANNEL     0
 
 
-#define   LAMP_1_PORT      'C'
-#define   LAMP_1_PIN        13
-#define   LAMP_1_MODE      0b0010
+#define   LAMP_1_PORT      PORT_F
+#define   LAMP_1_PIN       PIN_1
+#define   LAMP_1_MODE      OP_PUSH_PULL
 
 
 error_status Lamp_Init(void);

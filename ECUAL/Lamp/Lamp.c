@@ -1,9 +1,9 @@
-#include"STD_TYPES.h"
+#include"STD_Types.h"
 #include"GPIO.h"
 #include"Lamp.h"
 
 typedef struct {
-	u8 LAMP_PORT;
+	u32 LAMP_PORT;
 	u8 LAMP_PIN;
 	u8 LAMP_MODE;
 } LAMP_t;
@@ -27,9 +27,9 @@ error_status Lamp_Init(void) {
 error_status Lamp_Update(u8 lampChannel, u8 lampState) {
 	error_status Local_ReturnValue = E_OK;
 		if (lampState == LAMP_ON) {
-			Local_ReturnValue = GPIO_WritePin(LAMP_CHANNELS[lampChannel].LAMP_PORT,LAMP_CHANNELS[lampChannel].LAMP_PIN, 1);
-		} else if (lampState == LAMB_OFF) {
-			Local_ReturnValue = GPIO_WritePin(LAMP_CHANNELS[lampChannel].LAMP_PORT,LAMB_CHANNELS[lampChannel].LAMP_PIN, 0);
+			Local_ReturnValue = GPIO_WritePin(LAMP_CHANNELS[lampChannel].LAMP_PORT,LAMP_CHANNELS[lampChannel].LAMP_PIN, LAMP_ON);
+		} else if (lampState == LAMP_OFF) {
+			Local_ReturnValue = GPIO_WritePin(LAMP_CHANNELS[lampChannel].LAMP_PORT,LAMP_CHANNELS[lampChannel].LAMP_PIN, LAMP_OFF);
 		}
 		else{
 			Local_ReturnValue=E_NOK;

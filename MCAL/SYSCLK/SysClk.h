@@ -59,10 +59,10 @@
 /* disabled; they must be enabled in order to operate or respond to register           */
 /* reads/writes.                                                                       */
 /*	and it returns a std error whether this peripheral clock was enabled or not        */
-extern ERROR_STATUS RCGCGPIO_EnablePeripheralClock(u32 Copy_u32GPIO_Peripheral);
+extern error_status RCGCGPIO_EnablePeripheralClock(u32 Copy_u32GPIO_Peripheral);
 
 											
-/* Enables a peripheral.                                                               */
+/* Disables a peripheral.                                                               */
 /*                                                                                     */
 /* \param Copy_u32GPIO_Peripheral is the peripheral to disable.                        */
 /* The Copy_u32GPIO_Peripheral parameter must be only one of the following values:     */
@@ -73,7 +73,7 @@ extern ERROR_STATUS RCGCGPIO_EnablePeripheralClock(u32 Copy_u32GPIO_Peripheral);
 /*SYSCTL_RCGCGPIO_R1  for GPIO Port B Run Mode Clock                                   */
 /*SYSCTL_RCGCGPIO_R0  for GPIO Port A Run Mode Clock                                   */
 /*	and it returns a std error whether this peripheral clock was disabled or not       */
-extern ERROR_STATUS RCGCGPIO_DisablePeripheralClock(u32 Copy_u32GPIO_Peripheral);
+extern error_status RCGCGPIO_DisablePeripheralClock(u32 Copy_u32GPIO_Peripheral);
 
 /*Use Crystal Oscillator as a clock source with one of the selected values, the function takes two parameters*/
 /*1- Copy_u32OscillatorSource to select the external clock source                                            */
@@ -106,4 +106,4 @@ extern ERROR_STATUS RCGCGPIO_DisablePeripheralClock(u32 Copy_u32GPIO_Peripheral)
 /*SYSCTL_RCC_XTAL_20MHZ              for 20.0 MHz (USB)                                                      */
 /*SYSCTL_RCC_XTAL_24MHZ              for 24.0 MHz (USB)                                                      */
 /*SYSCTL_RCC_XTAL_25MHZ              for 25.0 MHz (USB)                                                      */
-extern ERROR_STATUS RCC_CrystalOscillatorInit(u32 Copy_u32OscillatorSource, u32 Copy_u32CrystalValue);
+extern error_status RCC_CrystalOscillatorInit(u32 Copy_u32OscillatorSource, u32 Copy_u32CrystalValue);

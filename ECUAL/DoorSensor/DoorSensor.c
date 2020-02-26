@@ -1,11 +1,13 @@
 /********************************
 *Author: Mohanad Fawzy Sallam   *
-*Version: v01                   *
-*Date: 25/02/2020               *
+*Version: v1.1                   *
+*Date: 26/02/2020               *
 *********************************/
 #include "STD_Types.h"
-#include "DoorSensor.h"
 #include "SysClk.h"
+#include "GPIO.h"
+#include "DoorSensor.h"
+
 error_status DoorSensor_Init (u8 doorChannel)
 {
   error_status localError=E_OK;
@@ -40,7 +42,7 @@ error_status DoorSensor_Init (u8 doorChannel)
       localError=RCGCGPIO_EnablePeripheralClock(SYSCTL_RCGCGPIO_R4);
     else if (DOOR2_PORT == PORT_F)
       localError=RCGCGPIO_EnablePeripheralClock(SYSCTL_RCGCGPIO_R5);
-    localError=GPIO_Init (DOOR1_PORT,DOOR1_PIN,DOOR2_OPERATION_MODE);
+    localError=GPIO_Init (DOOR2_PORT,DOOR2_PIN,DOOR2_OPERATION_MODE);
   }
   else
   {
@@ -53,11 +55,11 @@ error_status DoorSensor_ReadStatus (u8 doorChannel,u8 * status)
     error_status localError=E_OK;
   if (doorChannel == DOOR1)
   {
-    localError=GPIO_GetPinValue (DOOR1_PORT,DOOR1_PIN,status);
+    localError=GPIO_ReadPin (DOOR1_PORT,DOOR1_PIN,status);
   }
   else if (doorChannel == DOOR2)
   {
-    localError=GPIO_GetPinValue (DOOR1_PORT,DOOR1_PIN,status);
+    localError=GPIO_ReadPin (DOOR2_PORT,DOOR2_PIN,status);
   }
   else
   {
