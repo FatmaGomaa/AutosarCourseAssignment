@@ -59,7 +59,7 @@
 /* disabled; they must be enabled in order to operate or respond to register           */
 /* reads/writes.                                                                       */
 /*	and it returns a std error whether this peripheral clock was enabled or not        */
-extern error_status RCGCGPIO_EnablePeripheralClock(u32 Copy_u32GPIO_Peripheral);
+extern ERROR_STATUS RCGCGPIO_EnablePeripheralClock(u32 Copy_u32GPIO_Peripheral);
 
 											
 /* Enables a peripheral.                                                               */
@@ -73,38 +73,37 @@ extern error_status RCGCGPIO_EnablePeripheralClock(u32 Copy_u32GPIO_Peripheral);
 /*SYSCTL_RCGCGPIO_R1  for GPIO Port B Run Mode Clock                                   */
 /*SYSCTL_RCGCGPIO_R0  for GPIO Port A Run Mode Clock                                   */
 /*	and it returns a std error whether this peripheral clock was disabled or not       */
-extern error_status RCGCGPIO_DisablePeripheralClock(u32 Copy_u32GPIO_Peripheral);
+extern ERROR_STATUS RCGCGPIO_DisablePeripheralClock(u32 Copy_u32GPIO_Peripheral);
 
-/*Configure the external clock source and value                                        */
-/*param Copy_u32OscillatorSource is the oscillator source.                             */
-/*The Copy_u32OscillatorSource parameter must be only one of the following values:     */
-/*SYSCTL_RCC_OSCSRC_MAIN                                                               */
-/*SYSCTL_RCC_OSCSRC_INT                                                                */
-/*SYSCTL_RCC_OSCSRC_INT4                                                               */
-/*SYSCTL_RCC_OSCSRC_30                                                                 */
-/*                                                                                     */
-/*param Copy_u32CrystalValue is the oscillator source.                                 */
-/*The Copy_u32CrystalValue parameter must be only one of the following values:         */
-/*SYSCTL_RCC_XTAL_4MHZ                                                                 */
-/*SYSCTL_RCC_XTAL_4_09MHZ                                                              */
-/*SYSCTL_RCC_XTAL_4_91MHZ                                                              */
-/*SYSCTL_RCC_XTAL_5MHZ                                                                 */
-/*SYSCTL_RCC_XTAL_5_12MHZ                                                              */
-/*SYSCTL_RCC_XTAL_6MHZ                                                                 */
-/*SYSCTL_RCC_XTAL_6_14MHZ                                                              */
-/*SYSCTL_RCC_XTAL_7_37MHZ                                                              */
-/*SYSCTL_RCC_XTAL_8MHZ                                                                 */
-/*SYSCTL_RCC_XTAL_8_19MHZ                                                              */
-/*SYSCTL_RCC_XTAL_10MHZ                                                                */
-/*SYSCTL_RCC_XTAL_12MHZ                                                                */
-/*SYSCTL_RCC_XTAL_12_2MHZ                                                              */
-/*SYSCTL_RCC_XTAL_13_5MHZ                                                              */
-/*SYSCTL_RCC_XTAL_14_3MHZ                                                              */
-/*SYSCTL_RCC_XTAL_16MHZ                                                                */
-/*SYSCTL_RCC_XTAL_16_3MHZ                                                              */
-/*SYSCTL_RCC_XTAL_18MHZ                                                                */
-/*SYSCTL_RCC_XTAL_20MHZ                                                                */
-/*SYSCTL_RCC_XTAL_24MHZ                                                                */
-/*SYSCTL_RCC_XTAL_25MHZ                                                                */
-
-extern error_status RCC_CrystalOscillatorInit(u32 Copy_u32OscillatorSource, u32 Copy_u32CrystalValue);
+/*Use Crystal Oscillator as a clock source with one of the selected values, the function takes two parameters*/
+/*1- Copy_u32OscillatorSource to select the external clock source                                            */
+/*The Copy_u32OscillatorSource parameter must be only one of the following values:                           */
+/*SYSCTL_RCC_OSCSRC_MAIN   for MOSC                                                                          */
+/*SYSCTL_RCC_OSCSRC_INT    for IOSC                                                                          */
+/*SYSCTL_RCC_OSCSRC_INT4   for IOSC/4                                                                        */
+/*SYSCTL_RCC_OSCSRC_30     for LFIOSC                                                                        */
+/*                                                                                                           */
+/*2-Copy_u32CrystalValue to select the external clock value                                                  */
+/*  The Copy_u32CrystalValue parameter must be only one of the following values:                             */
+/*SYSCTL_RCC_XTAL_4MHZ               for 4 MHz                                                               */
+/*SYSCTL_RCC_XTAL_4_09MHZ            for 4.096 MHz                                                           */
+/*SYSCTL_RCC_XTAL_4_91MHZ            for 4.9152 MHz                                                          */
+/*SYSCTL_RCC_XTAL_5MHZ               for 5 MHz                                                               */
+/*SYSCTL_RCC_XTAL_5_12MHZ            for 5.12 MHz                                                            */
+/*SYSCTL_RCC_XTAL_6MHZ               for 6 MHz                                                               */
+/*SYSCTL_RCC_XTAL_6_14MHZ            for 6.144 MHz                                                           */
+/*SYSCTL_RCC_XTAL_7_37MHZ            for 7.3728 MHz                                                          */
+/*SYSCTL_RCC_XTAL_8MHZ               for 8 MHz                                                               */
+/*SYSCTL_RCC_XTAL_8_19MHZ            for 8.192 MHz                                                           */
+/*SYSCTL_RCC_XTAL_10MHZ              for 10 MHz                                                              */
+/*SYSCTL_RCC_XTAL_12MHZ              for 12 MHz                                                              */
+/*SYSCTL_RCC_XTAL_12_2MHZ            for 12.288 MHz                                                          */
+/*SYSCTL_RCC_XTAL_13_5MHZ            for 13.56 MHz                                                           */
+/*SYSCTL_RCC_XTAL_14_3MHZ            for 14.31818 MHz                                                        */
+/*SYSCTL_RCC_XTAL_16MHZ              for 16 MHz                                                              */
+/*SYSCTL_RCC_XTAL_16_3MHZ            for 16.384 MHz                                                          */
+/*SYSCTL_RCC_XTAL_18MHZ              for 18.0 MHz (USB)                                                      */
+/*SYSCTL_RCC_XTAL_20MHZ              for 20.0 MHz (USB)                                                      */
+/*SYSCTL_RCC_XTAL_24MHZ              for 24.0 MHz (USB)                                                      */
+/*SYSCTL_RCC_XTAL_25MHZ              for 25.0 MHz (USB)                                                      */
+extern ERROR_STATUS RCC_CrystalOscillatorInit(u32 Copy_u32OscillatorSource, u32 Copy_u32CrystalValue);

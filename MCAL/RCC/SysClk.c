@@ -15,7 +15,7 @@ error_status RCGCGPIO_EnablePeripheralClock(u32 Copy_u32GPIO_Peripheral){
 error_status RCGCGPIO_DisablePeripheralClock(u32 Copy_u32GPIO_Peripheral){
 	error_status Local_ErrorStatus = NOT_OK;
 	SYSCTL_RCGCGPIO &=~ Copy_u32GPIO_Peripheral;
-	
+
 	if((SYSCTL_RCGCGPIO & Copy_u32GPIO_Peripheral) == Copy_u32GPIO_Peripheral){
 		Local_ErrorStatus = OK;
 		return Local_ErrorStatus;
