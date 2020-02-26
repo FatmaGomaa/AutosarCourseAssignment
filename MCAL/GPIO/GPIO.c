@@ -10,6 +10,7 @@
 #define CHECK_PORT(PORT) (PORT == PORT_A || PORT == PORT_B ||PORT == PORT_C ||PORT == PORT_D||PORT == PORT_E||PORT == PORT_F)
 #define CHECK_PIN(PIN) (PIN == PIN_0 ||PIN == PIN_1 || PIN == PIN_2 ||PIN == PIN_3 ||PIN == PIN_4 ||PIN == PIN_5 ||PIN == PIN_6 ||PIN == PIN_7)
 
+#define GPIO_LOCK_KEY 0x4C4F434B
 /*
 #define GPIO_O_DATA             0x00000000  // GPIO Data
 #define GPIO_O_DIR              0x00000400  // GPIO Direction
@@ -88,6 +89,12 @@ error_status GPIO_Init (u32 Port, u8 Pin, u8 Mode)
   {
     if (CHECK_PIN(Pin))
     {
+      if (Port == PORT_F)
+      {
+        MyPort->LOCK = GPIO_LOCK_KEY;
+        MyPort->CR |= 1<<Pin;
+        MyPort->DEN |= 1<<Pin;
+      }
         if (Mode== OP_PUSH_PULL)
         {
           MyPort->DIR|=(u32)(1<<Pin);
