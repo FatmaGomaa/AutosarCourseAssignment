@@ -1,3 +1,6 @@
+#ifndef SYSCLK_H_
+#define SYSCLK_H_
+
 #define SYSCTL_RCC              *(volatile u32*)0x400FE060  // Run-Mode Clock Configuration
 
 #define SYSCTL_RCC_BYPASS       0x00000800  // PLL Bypass
@@ -107,3 +110,5 @@ extern error_status RCGCGPIO_DisablePeripheralClock(u32 Copy_u32GPIO_Peripheral)
 /*SYSCTL_RCC_XTAL_24MHZ              for 24.0 MHz (USB)                                                      */
 /*SYSCTL_RCC_XTAL_25MHZ              for 25.0 MHz (USB)                                                      */
 extern error_status RCC_CrystalOscillatorInit(u32 Copy_u32OscillatorSource, u32 Copy_u32CrystalValue);
+
+#endif
