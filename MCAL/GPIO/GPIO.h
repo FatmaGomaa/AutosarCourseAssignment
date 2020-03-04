@@ -1,9 +1,16 @@
-/********************************
-*Author: Mostafa Ghareeb        *
-*        Mohanad Fawzy Sallam   * 
-*Version: v1.1                  *
-*Date: 26/02/2020               *
-*********************************/
+/************************************************************************
+ * File name: GPIO.h
+ *
+ *
+ * Description: This file contains the prototypes of the GPIO driver
+ * and the macros used by the user
+ *
+ * owner: Mostafa Ghareeb
+ *        Mohanad Fawzy Sallam
+ * date: 26/2/2020
+ * version 1.1
+ *
+ ***************************************************************************/
 #ifndef GPIO_H_
 #define GPIO_H_
 
@@ -27,14 +34,67 @@
 #define IP_PULL_UP   1
 #define IP_PULL_DOWN 2
 #define OP_PUSH_PULL 3
- 
- 
-
-/*Dscription: This API shall initalize GPIO Configuration Mode*/
+ /*GPIO OUTPUT Values*/
+#define HIGH 1
+#define LOW 0 
+/************************************************************************
+ * Function name: GPIO_Init
+ *
+ * parameters:  Input:
+ *                 Port
+ *                     type: u32
+                        Description: GPIO port number (PORT_A,PORT_B,PORT_C,PORT_D,PORT_E,PORT_F)
+ *                 Pin
+ *                     type: u8
+ *                     Description: GPIO pin number (PIN_0 .. PIN_7)
+ *                 Mode
+ *                     type: u8
+ *                     Description: GPIO pin mode (IP_PULL_UP,IP_PULL_DOWN,OP_PUSH_PULL)
+ *
+ *              Output: NA
+ *              In/out: NA
+ * return: E_OK, E_NOK
+ * Description: a function to initialize all the GPIO Groups in the configurations
+ ***************************************************************************/
 error_status GPIO_Init (u32 Port, u8 Pin, u8 Mode);
-/*Dscription: This API shall Write GPIO pin output value*/
+/************************************************************************
+ * Function name: GPIO_WritePin
+ *
+ * parameters:  Input:
+ *                 Port
+ *                     type: u32
+                        Description: GPIO port number (PORT_A,PORT_B,PORT_C,PORT_D,PORT_E,PORT_F)
+ *                 Pin
+ *                     type: u8
+ *                     Description: GPIO pin number (PIN_0 .. PIN_7)
+ *                 Value
+ *                     type: u8
+ *                     Description: GPIO pin output value (IP_PULL_UP,IP_PULL_DOWN,OP_PUSH_PULL)
+ *
+ *              Output: NA
+ *              In/out: NA
+ * return: E_OK, E_NOK
+ * Description: a function to set value of the output pin
+ ***************************************************************************/
 error_status GPIO_WritePin (u32 Port, u8 Pin, u8 Value);
-/*Dscription: This API shall read GPIO pin input value*/
+/************************************************************************
+ * Function name: GPIO_ReadPin
+ *
+ * parameters:  Input:
+ *                 Port
+ *                     type: u32
+ *                     Description: GPIO port number (PORT_A,PORT_B,PORT_C,PORT_D,PORT_E,PORT_F)
+ *                 Pin
+ *                     type: u8
+ *                     Description: GPIO pin number (PIN_0 .. PIN_7)
+ *              Output: 
+ *                     Data
+ *                     type: pointer to u8
+ *                     Description: address of u8 variable that will store the GPIO input pin reading
+ *              In/out: NA
+ * return: E_OK, E_NOK
+ * Description: a function to get reading of the GPIO pin value
+ ***************************************************************************/
 error_status GPIO_ReadPin (u32 Port, u8 Pin, u8 * Data);
 
 #endif
