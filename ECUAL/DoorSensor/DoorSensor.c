@@ -1,13 +1,30 @@
-/********************************
-*Author: Mohanad Fawzy Sallam   *
-*Version: v1.1                   *
-*Date: 26/02/2020               *
-*********************************/
+/************************************************************************
+ * File name: DoorSensor.c
+ *
+ *
+ * Description: This file contains the implementatoins of the doorSensor functionalities
+ *
+ * owner: Mohanad Fawzy Sallam        
+ * date: 26/2/2020
+ * version 1.1
+ ***************************************************************************/
 #include "STD_Types.h"
 #include "SysClk.h"
 #include "GPIO.h"
 #include "DoorSensor.h"
-
+/************************************************************************
+ * Function name: DoorSensor_Init
+ *
+ * parameters:  Input:
+ *                 doorChannel
+ *                     type: u8
+ *                     Description: DoorSensor number  (DOOR1,DOOR2)
+ *
+ *              Output: NA
+ *              In/out: NA
+ * return: E_OK, E_NOK
+ * Description: a function to initialize the specified door sensor based on the given initial configuraton
+ ***************************************************************************/
 error_status DoorSensor_Init (u8 doorChannel)
 {
   error_status localError=E_OK;
@@ -50,6 +67,21 @@ error_status DoorSensor_Init (u8 doorChannel)
   }
   return localError;
 }
+/************************************************************************
+ * Function name: GPIO_ReadPin
+ *
+ * parameters:  Input:
+ *                 doorChannel
+ *                     type: u8
+ *                     Description: DoorSensor number  (DOOR1,DOOR2)
+ *              Output: 
+ *                     status
+ *                     type: pointer to u8
+ *                     Description: address of u8 variable that will store the state of the door sensor.
+ *              In/out: NA
+ * return: E_OK, E_NOK
+ * Description: a function to get the state of the door sensor
+ ***************************************************************************/
 error_status DoorSensor_ReadStatus (u8 doorChannel,u8 * status)
 {
     error_status localError=E_OK;

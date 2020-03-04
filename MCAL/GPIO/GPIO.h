@@ -74,7 +74,7 @@ error_status GPIO_Init (u32 Port, u8 Pin, u8 Mode);
  *              Output: NA
  *              In/out: NA
  * return: E_OK, E_NOK
- * Description: a function to set value of the output pin
+ * Description: a function to set value of the specified pin
  ***************************************************************************/
 error_status GPIO_WritePin (u32 Port, u8 Pin, u8 Value);
 /************************************************************************
@@ -90,7 +90,7 @@ error_status GPIO_WritePin (u32 Port, u8 Pin, u8 Value);
  *              Output: 
  *                     Data
  *                     type: pointer to u8
- *                     Description: address of u8 variable that will store the GPIO input pin reading
+ *                     Description: address of u8 variable that will store the specified pin reading.
  *              In/out: NA
  * return: E_OK, E_NOK
  * Description: a function to get reading of the GPIO pin value
