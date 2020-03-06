@@ -35,9 +35,9 @@
  * return: E_OK, E_NOK
  * Description: a function to initialize the specified door sensor based on the given initial configuraton
  ***************************************************************************/
-error_status DoorSensor_Init (u8 doorChannel
+error_status DoorSensor_Init (u8 doorChannel);
 /************************************************************************
- * Function name: GPIO_ReadPin
+ * Function name: DoorSensor_ReadStatus
  *
  * parameters:  Input:
  *                 doorChannel

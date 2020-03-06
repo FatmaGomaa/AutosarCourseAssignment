@@ -68,7 +68,7 @@ error_status DoorSensor_Init (u8 doorChannel)
   return localError;
 }
 /************************************************************************
- * Function name: GPIO_ReadPin
+ * Function name: DoorSensor_ReadStatus
  *
  * parameters:  Input:
  *                 doorChannel

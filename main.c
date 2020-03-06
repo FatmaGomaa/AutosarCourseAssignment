@@ -1,11 +1,11 @@
-#include "STD_Types.h"
-#include "SysClk.h"
-#include "GPIO.h"
-#include "DoorSensor.h"
-#include "Lamp.h"
-#include "LeftDoor.h"
-#include "RightDoor.h"
-#include "Lighting.h"
+#include "./LIB/STD_TYPES/STD_Types.h"
+#include "./MCAL/SYSCLK/SysClk.h"
+#include "./MCAL/GPIO/GPIO.h"
+#include "./ECUAL/DoorSensor/DoorSensor.h"
+#include "./ECUAL/Lamp/Lamp.h"
+#include "./APP/LeftDoor/LeftDoor.h"
+#include "./APP/RightDoor/RightDoor.h"
+#include "./APP/Lighting/Lighting.h"
 
 void main(void)
 {
@@ -19,6 +19,6 @@ void main(void)
     RightDoor_Init();
     while(1)
     {
-        lighting();
+        Lighting();
     }
 }
