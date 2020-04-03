@@ -3,10 +3,10 @@
 /* Version : V1.0             */
 /* Date    : 03-04-2020       */
 /******************************/
-#ifndef LEFT_DOOR_H_
-#define LEFT_DOOR_H_
+#ifndef DOOR_CONTACT_H_
+#define DOOR_CONTACT_H_
 
-error_status LeftDoor_Init(void);
-error_status LeftDoor_GetStatus(void);
+error_status DoorContact_Init(void);
+error_status DoorContact_UpdateStatus(void);
 
 #endif

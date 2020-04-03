@@ -8,21 +8,24 @@
 
 #include "../../MCAL/DIO/DIO.h"
 #include "../../RTE/RTE.h"
-#include "LeftDoor.h"
+#include "DoorContact.h"
 
-error_status LeftDoor_Init(void)
+error_status DoorContact_Init(void)
 {
 	error_status local_error = E_OK;
-	local_error  = RTE_LeftDoorInit();
-	local_error |= RTE_WriteLeftDoorStatus(DOOR_CLOSED);
+	local_error = RTE_WriteDoorStatus(DOOR_CLOSED);
 	return local_error;
 }
 
-error_status LeftDoor_GetStatus(void)
+error_status DoorContact_UpdateStatus(void)
 {
 	error_status local_error = E_OK;
+	u8 RightDoorStatus;
 	u8 LeftDoorStatus;
-	local_error  = RTE_CallGetLeftDoorStatus(&LeftDoorStatus);
-	local_error |= RTE_WriteLeftDoorStatus((LeftDoorStatus^LEFT_DOOR_MODE));
+	u8 DoorStatus;
+	local_error  = RTE_ReadRightDoorStatus(&RightDoorStatus);
+	local_error |= RTE_ReadLeftDoorStatus(&LeftDoorStatus);
+	DoorStatus = RightDoorStatus & LeftDoorStatus;
+	local_error |= RTE_WriteDoorStatus(DoorStatus);
 	return local_error;
 }

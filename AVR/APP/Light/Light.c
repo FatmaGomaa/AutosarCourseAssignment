@@ -8,21 +8,25 @@
 
 #include "../../MCAL/DIO/DIO.h"
 #include "../../RTE/RTE.h"
-#include "LeftDoor.h"
+#include "Light.h"
 
-error_status LeftDoor_Init(void)
+error_status Light_Init(void)
 {
 	error_status local_error = E_OK;
-	local_error  = RTE_LeftDoorInit();
-	local_error |= RTE_WriteLeftDoorStatus(DOOR_CLOSED);
+	local_error = RTE_LightInit();
 	return local_error;
 }
 
-error_status LeftDoor_GetStatus(void)
+error_status Light_UpdateLight(void)
 {
 	error_status local_error = E_OK;
-	u8 LeftDoorStatus;
-	local_error  = RTE_CallGetLeftDoorStatus(&LeftDoorStatus);
-	local_error |= RTE_WriteLeftDoorStatus((LeftDoorStatus^LEFT_DOOR_MODE));
+	u8 LightStatus;
+	local_error  = RTE_ReadLightStatus(&LightStatus);
+	if (LIGHT_ON == LightStatus)
+	{local_error |= RTE_CallLightON();}
+	else if (LIGHT_OFF == LightStatus)
+	{local_error |= RTE_CallLightOFF();}
+	else
+	{local_error = E_NOK;}
 	return local_error;
 }

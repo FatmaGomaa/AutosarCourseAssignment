@@ -1,3 +1,8 @@
+/******************************/
+/* Author  : Moustafa Ghareeb */
+/* Version : V1.0             */
+/* Date    : 03-04-2020       */
+/******************************/
 #ifndef STD_TYPES_H_
 #define STD_TYPES_H_
 
@@ -31,7 +36,7 @@ typedef f96* P96;
 
 /*Error*/
 typedef u8 error_status;
-#define	E_NOK	0
-#define	E_OK	1
+#define	E_OK	0
+#define	E_NOK	1
 
 #endif

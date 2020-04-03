@@ -1,47 +1,28 @@
-/************************************************************************
- * File name: RightDoor.c
- *
- * Description: This file contains the implementatoins of the RightDoor functionalities
- *
- * Author: 	Moustafa Ghareeb        
- * Date: 	26-2-2020  
- * Version: 1.1
- ***************************************************************************/
-#include "STD_Types.h"
-#include "GPIO.h"
-#include "DoorSensor.h"
+/******************************/
+/* Author  : Moustafa Ghareeb */
+/* Version : V1.0             */
+/* Date    : 03-04-2020       */
+/******************************/
+#include "../../LIB/STD_TYPES/STD_TYPES.h"
+#include "../../LIB/BIT_MATH/BIT_MATH.h"
+
+#include "../../MCAL/DIO/DIO.h"
+#include "../../RTE/RTE.h"
 #include "RightDoor.h"
 
-/************************************************************************
- * Function name: RightDoor_Init
- *
- * parameters:  Input:	NA
- *              Output: NA
- *              In/out: NA
- * return: E_OK, E_NOK
- * Description: This function initializes the right door pin
- ***************************************************************************/
 error_status RightDoor_Init(void)
 {
-    error_status localError = E_OK;
-	localError = DoorSensor_Init(RIGHT_DOOR);
-	return localError;
+	error_status local_error = E_OK;
+	local_error  = RTE_RightDoorInit();
+	local_error |= RTE_WriteRightDoorStatus(DOOR_CLOSED);
+	return local_error;
 }
-/************************************************************************
- * Function name: RightDoor_GetStatus
- *
- * parameters:  Input:	NA
- *              Output: 
- *                     status
- *                     type: pointer to u8
- *                     Description: address of u8 variable that will store the state of the right door sensor.
- *              In/out: NA
- * return: E_OK, E_NOK
- * Description: This function gets the value of the right door sensor
- ***************************************************************************/
-error_status RightDoor_GetStatus(u8 * status)
+
+error_status RightDoor_GetStatus(void)
 {
-    error_status localError = E_OK;
-	localError = DoorSensor_ReadStatus(RIGHT_DOOR, status);
-	return localError;
+	error_status local_error = E_OK;
+	u8 RightDoorStatus;
+	local_error  = RTE_CallGetRightDoorStatus(&RightDoorStatus);
+	local_error |= RTE_WriteRightDoorStatus((RightDoorStatus^RIGHT_DOOR_MODE));
+	return local_error;
 }
