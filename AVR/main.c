@@ -1,35 +1,41 @@
 /******************************/
 /* Author  : Moustafa Ghareeb */
 /* Version : V1.0             */
-/* Date    : 03-04-2020       */
+/* Date    : 08-04-2020       */
 /******************************/
 #include "./LIB/STD_TYPES/STD_Types.h"
 #include "./LIB/BIT_MATH/BIT_MATH.h"
 #include "./MCAL/DIO/DIO.h"
+#include "./MCAL/TIMER0/TIMER0.h"
+#include "./OS/OS_interface.h"
 #include "./APP/DoorContact/DoorContact.h"
 #include "./APP/LeftDoor/LeftDoor.h"
 #include "./APP/RightDoor/RightDoor.h"
 #include "./APP/Light/Light.h"
 #include "./APP/Dimmer/Dimmer.h"
+#include "./RTE/RTE.h"
 
 void main(void)
 {
-    /*Initialize the Left door sensor*/
+    /*Initializing used pins*/
+    DIO_SetPinDir(RIGHT_DOOR_PORT,RIGHT_DOOR_PIN,RIGHT_DOOR_DIR);
+    DIO_SetPinValue(RIGHT_DOOR_PORT,RIGHT_DOOR_PIN,RIGHT_DOOR_MODE);
+    DIO_SetPinDir(LEFT_DOOR_PORT,LEFT_DOOR_PIN,LEFT_DOOR_DIR);
+    DIO_SetPinValue(LEFT_DOOR_PORT,LEFT_DOOR_PIN,LEFT_DOOR_MODE);
+    DIO_SetPinDir(LIGHT_PORT,LIGHT_PIN,LIGHT_DIR);
+    /*Initializing app components*/
     LeftDoor_Init();
-    /*Initialize the Right door sensor*/
     RightDoor_Init();
-    /*Initialize the door contacts*/
     DoorContact_Init();
-    /*Initialize the dimmer*/
     Dimmer_Init();
-    /*Initialize the light*/
     Light_Init();
+    /*Creating OS tasks*/
+    RTOS_CreateTask(0,2,TASK_ACCESSIBLE, RTE_Task_02MS);
+    RTOS_CreateTask(0,10,TASK_ACCESSIBLE, RTE_Task_10MS);
+    /*Starting the OS*/
+    RTOS_START();
     while(1)
     {
-        RightDoor_GetStatus();
-        LeftDoor_GetStatus();
-        DoorContact_UpdateStatus();
-        Dimmer_UpdateStatus();
-        Light_UpdateLight();
+
     }
 }

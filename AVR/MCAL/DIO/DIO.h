@@ -12,10 +12,10 @@
 #define INPUT_PULLUP  	1
 #define OUTPUT_LOW		0
 #define OUTPUT_HIGH		1
-#define PORTA	'A'
-#define PORTB	'B'
-#define PORTC	'C'
-#define PORTD	'D'
+#define PORT_A	'A'
+#define PORT_B	'B'
+#define PORT_C	'C'
+#define PORT_D	'D'
 #define PIN0	0
 #define PIN1	1
 #define PIN2	2

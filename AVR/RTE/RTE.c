@@ -1,12 +1,19 @@
 /******************************/
 /* Author  : Moustafa Ghareeb */
 /* Version : V1.0             */
-/* Date    : 03-04-2020       */
+/* Date    : 08-04-2020       */
 /******************************/
 #include "../LIB/STD_TYPES/STD_TYPES.h"
 #include "../LIB/BIT_MATH/BIT_MATH.h"
 
 #include "../MCAL/DIO/DIO.h"
+
+#include "../APP/DoorContact/DoorContact.h"
+#include "../APP/LeftDoor/LeftDoor.h"
+#include "../APP/RightDoor/RightDoor.h"
+#include "../APP/Light/Light.h"
+#include "../APP/Dimmer/Dimmer.h"
+
 #include "RTE.h"
 
 #define DOOR_OPEN   	0
@@ -20,30 +27,6 @@ static u8 Rte_LeftDoorStatus  ;
 static u8 Rte_DoorStatus      ;
 static u8 Rte_LightStatus     ;
 
-/*RTE Init*/
-
-error_status RTE_RightDoorInit(void)
-{
-	error_status local_error = E_OK;
-	local_error  = DIO_SetPinDir(RIGHT_DOOR_PORT,RIGHT_DOOR_PIN,RIGHT_DOOR_DIR);
-	local_error |= DIO_SetPinValue(RIGHT_DOOR_PORT,RIGHT_DOOR_PIN,RIGHT_DOOR_MODE);
-	return local_error;
-}
-
-error_status RTE_LeftDoorInit(void)
-{
-	error_status local_error = E_OK;
-	local_error  = DIO_SetPinDir(LEFT_DOOR_PORT,LEFT_DOOR_PIN,LEFT_DOOR_DIR);
-	local_error |= DIO_SetPinValue(LEFT_DOOR_PORT,LEFT_DOOR_PIN,LEFT_DOOR_MODE);
-	return local_error;
-}
-
-error_status RTE_LightInit(void)
-{
-	error_status local_error = E_OK;
-	local_error  = DIO_SetPinDir(LIGHT_PORT,LIGHT_PIN,LIGHT_DIR);
-	return local_error;
-}
 
 /*Send-Rec*/
 
@@ -119,16 +102,22 @@ error_status RTE_CallGetLeftDoorStatus(u8* status)
 	return local_error;
 }
 
-error_status RTE_CallLightON(void)
+error_status RTE_CallLightUpdate(u8 status)
 {
 	error_status local_error = E_OK;
-	local_error = DIO_SetPinValue(LIGHT_PORT,LIGHT_PIN,LIGHT_ON);
+	local_error = DIO_SetPinValue(LIGHT_PORT,LIGHT_PIN,status);
 	return local_error;
 }
 
-error_status RTE_CallLightOFF(void)
+void RTE_Task_02MS(void)
 {
-	error_status local_error = E_OK;
-	local_error = DIO_SetPinValue(LIGHT_PORT,LIGHT_PIN,LIGHT_OFF);
-	return local_error;
+	RightDoor_GetStatus();
+	LeftDoor_GetStatus();
+}
+
+void RTE_Task_10MS(void)
+{
+	DoorContact_UpdateStatus();
+	Dimmer_UpdateStatus();
+	Light_UpdateLight();
 }
