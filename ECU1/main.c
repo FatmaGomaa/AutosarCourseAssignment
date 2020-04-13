@@ -14,6 +14,12 @@
 #include "./APP/RightDoor/RightDoor.h"
 #include "./RTE/RTE.h"
 
+
+#define TASK_PERIODICITY_10MS					10
+#define TASK_FIRST_DELAY_10MS					0
+
+#define TASK_PERIODICITY_02MS					2
+#define TASK_FIRST_DELAY_02MS					0
 void main(void)
 {
     /*Initializing used pins*/
@@ -28,8 +34,8 @@ void main(void)
     RightDoor_Init();
     DoorContact_Init();
     /*Creating OS tasks*/
-    RTOS_CreateTask(0,2,TASK_ACCESSIBLE, RTE_Task_02MS);
-    RTOS_CreateTask(0,10,TASK_ACCESSIBLE, RTE_Task_10MS);
+    RTOS_CreateTask(TASK_FIRST_DELAY_02MS,TASK_PERIODICITY_02MS,TASK_ACCESSIBLE, RTE_Task_02MS);
+    RTOS_CreateTask(TASK_FIRST_DELAY_10MS,TASK_PERIODICITY_10MS,TASK_ACCESSIBLE, RTE_Task_10MS);
     /*Starting the OS*/
     RTOS_START();
     while(1)
