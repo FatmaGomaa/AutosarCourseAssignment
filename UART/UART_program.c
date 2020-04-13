@@ -3,14 +3,15 @@
 /* Date      : 9 March 2020                                      */
 /* Version   : V01                                               */
 /*****************************************************************/
-#include "../../../LIB/01-STD_TYPES/STD_TYPES.h"
-#include "../../../LIB/01-STD_TYPES/BIT_MATH.h"
+#include "../../LIB/STD_TYPES/STD_TYPES.h"
+#include "../../LIB/BIT_MATH/BIT_MATH.h"
 
 
-#include "UART_interface.h"
-#include "UART_register.h"
-#include "UART_private.h"
-#include "UART_config.h"
+
+#include "../UART/UART_config.h"
+#include "../UART/UART_interface.h"
+#include "../UART/UART_private.h"
+#include "../UART/UART_register.h"
 
 const u8 BaudRateValue [3][3] =
 {
@@ -24,7 +25,7 @@ const u8 BaudRateValue [3][3] =
 void (*EndOfTransmitCB)(void);
 void (*EndOfRecCB)(u8  );
 
-void UART_voidInitialize (void)
+void UART_Init (void)
 {
 	/* U2X = 0 */
 	CLR_BIT(UCSRA,1);
@@ -47,10 +48,10 @@ void UART_voidInitialize (void)
 	UBRRL = BaudRateValue[UART_u8_SYS_FREQ][UART_u8_BUAD_RATE];
 }
 
-u8 UART_u8TransmitDataSynch   (u8 Copy_u8Data)
+error_status UART_TransmitDataSynch   (u8 Copy_u8Data)
 {
 	u32 Local_u32Timeout = 0;
-	u8  Local_u8Error    = ERROR_OK;
+	error_status  LocalError    = E_OK;
 
 	/* Send data on UDR */
 	UDR_T = Copy_u8Data;
@@ -64,7 +65,7 @@ u8 UART_u8TransmitDataSynch   (u8 Copy_u8Data)
 	/* timeout happened */
 	if (Local_u32Timeout >= UART_u32_TIME_OUT_TH)
 	{
-		Local_u8Error = ERROR_TIMEOUT;
+		LocalError = E_NOK;
 	}
 
 	else
@@ -73,16 +74,16 @@ u8 UART_u8TransmitDataSynch   (u8 Copy_u8Data)
 		SET_BIT(UCSRA,6);
 	}
 
-	return Local_u8Error;
+	return LocalError;
 }
 
 
-u8 UART_u8TransmitDataAsynch  (u8 Copy_u8Data, void(*Copy_ptr)(void))
+error_status UART_TransmitDataAsynch  (u8 Copy_u8Data, void(*Copy_ptr)(void))
 {
-	u8 localError=ERROR_OK;
-	if (Copy_ptr == NULL)
+	error_status LocalError=E_OK;
+	if (!Copy_ptr)
 	{
-		localError=ERROR_NOK;
+		LocalError=E_NOK;
 
 	}
 	else
@@ -96,14 +97,14 @@ u8 UART_u8TransmitDataAsynch  (u8 Copy_u8Data, void(*Copy_ptr)(void))
 		/* Save the callback address */
 		EndOfTransmitCB = Copy_ptr;
 	}
-	return localError;
+	return LocalError;
 }
 
 
-u8     UART_u8ReceiveSynch  (u8* Copy_pu8Data)
+error_status     UART_ReceiveSynch  (u8* Copy_pu8Data)
 {
 	u32 Local_u32Timeout = 0;
-	u8  Local_u8Error    = ERROR_OK;
+	u8  LocalError    = E_OK;
 
 	/* wait till flag is raised */
 	while( ((GET_BIT(UCSRA,7)) == 0) && (Local_u32Timeout < UART_u32_TIME_OUT_TH))
@@ -114,7 +115,7 @@ u8     UART_u8ReceiveSynch  (u8* Copy_pu8Data)
 	/* timeout happened */
 	if (Local_u32Timeout >= UART_u32_TIME_OUT_TH)
 	{
-		Local_u8Error = ERROR_TIMEOUT;
+		LocalError = E_NOK;
 	}
 
 	else
@@ -123,18 +124,18 @@ u8     UART_u8ReceiveSynch  (u8* Copy_pu8Data)
 		*Copy_pu8Data = UDR_R;
 	}
 
-	return Local_u8Error;
+	return LocalError;
 }
 
 
 
 
-u8   UART_u8ReceiveAsynch ( void(*Copy_ptr)(u8) )
+error_status   UART_ReceiveAsynch ( void(*Copy_ptr)(u8) )
 {
-	u8 localError = ERROR_OK;
-	if (Copy_ptr == NULL)
+	u8 LocalError = E_OK;
+	if (!Copy_ptr)
 	{
-		localError = ERROR_NOK;
+		LocalError = E_OK;
 	}
 	else
 	{
@@ -155,7 +156,7 @@ u8   UART_u8ReceiveAsynch ( void(*Copy_ptr)(u8) )
 
 		}
 	}
-	return localError;
+	return LocalError;
 }
 void __vector_15 (void) __attribute__((signal));
 void __vector_15 (void)
