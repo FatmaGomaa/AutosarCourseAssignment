@@ -1,5 +1,5 @@
 /*****************************************************************/
-/* Author    : Ahmed Assaf                                       */
+/* Author    : Mohanad Sallam                                    */
 /* Date      : 9 March 2020                                      */
 /* Version   : V01                                               */
 /*****************************************************************/
@@ -9,9 +9,16 @@
 
 
 #include "../UART/UART_config.h"
-#include "../UART/UART_interface.h"
-#include "../UART/UART_private.h"
-#include "../UART/UART_register.h"
+#include "../UART/UART.h"
+
+
+#define UDR_T      *((volatile u8*)0x2C)
+#define UDR_R      *((volatile u8*)0x2C)
+#define UCSRA      *((volatile u8*)0x2B)
+#define UCSRB      *((volatile u8*)0x2A)
+#define UCSRC      *((volatile u8*)0x40)
+#define UBRRL      *((volatile u8*)0x29)
+#define UBRRH      *((volatile u8*)0x40)
 
 const u8 BaudRateValue [3][3] =
 {
