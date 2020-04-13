@@ -15,20 +15,14 @@
 #include "../LIB/BIT_MATH/BIT_MATH.h"
 
 #include "../MCAL/DIO/DIO.h"
-#include "./MCAL/UART/UART.h"
+#include "../MCAL/UART/UART.h"
 
 #include "../APP/Light/Light.h"
 #include "../APP/Dimmer/Dimmer.h"
 
 #include "RTE.h"
 
-#define DOOR_OPEN   	0
-#define	DOOR_CLOSED  	1
-#define	LIGHT_OFF  		0
-#define LIGHT_ON   		1
 
-
-static u8 Rte_DoorStatus      ;
 static u8 Rte_LightStatus     ;
 
 

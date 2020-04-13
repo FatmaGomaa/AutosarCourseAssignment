@@ -20,18 +20,19 @@
 #include "./APP/Dimmer/Dimmer.h"
 #include "./RTE/RTE.h"
 
-#define 10MS_TASK_PERIODICITY					10
-#define 10MS_TASK_FIRST_DELAY					0
+#define TASK_PERIODICITY_10MS					10
+#define TASK_FIRST_DELAY_10MS					0
 void main(void)
 {
     /*Initializing used pins*/
     DIO_SetPinDir(LIGHT_PORT,LIGHT_PIN,LIGHT_DIR);
+    DIO_SetPinDir(PORT_D,PIN0,INPUT_FLOATING);
     /*Initializing app components*/
 	UART_Init();
     Dimmer_Init();
     Light_Init();
     /*Creating OS tasks*/
-    RTOS_CreateTask(10MS_TASK_FIRST_DELAY,10MS_TASK_PERIODICITY,TASK_ACCESSIBLE, RTE_Task_10MS);
+    RTOS_CreateTask(TASK_FIRST_DELAY_10MS,TASK_PERIODICITY_10MS,TASK_ACCESSIBLE, RTE_Task_10MS);
     /*Starting the OS*/
     RTOS_START();
     while(1)
