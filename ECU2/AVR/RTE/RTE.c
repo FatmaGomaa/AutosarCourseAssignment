@@ -4,7 +4,7 @@
  *                                                                                                     *
  * Description: This file contains the implementation of the Right Door	 software component  		   *
  *                                                                                                     *
- * Author: Basma AbdelHakim	                                                            			   *
+ * Author: Fatima Gomaa | Basma AbdelHakim	                                                            			   *
  * Date:   April 3, 2020                                                                               *
  * Version 1.0 : Initial Creation 					                                                   *
  * Version 1.1 : Adding Tasks Functions and Modifiying Lighting Function Calls in RTE to be 		   *

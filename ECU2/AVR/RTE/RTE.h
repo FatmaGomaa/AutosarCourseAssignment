@@ -1,14 +1,15 @@
 /*******************************************************************************************************
- * File name: RTE.h                                                                                   *
+ * File name: RightDoor.c                                                                            	*
  *                                                                                                     *
  *                                                                                                     *
- * Description: This file contains the implementation of the RTE Layer 								   *
+ * Description: This file contains the implementation of the Right Door	 software component  		   *
  *                                                                                                     *
- * Author: Fatima Gomaa  | Basma AbdelHakim                                                            *
+ * Author: Fatima Gomaa | Basma AbdelHakim	                                                            			   *
  * Date:   April 3, 2020                                                                               *
  * Version 1.0 : Initial Creation 					                                                   *
  * Version 1.1 : Adding Tasks Functions and Modifiying Lighting Function Calls in RTE to be 		   *
  * RTE_CallLightUpdate																				   *
+ * Version 1.2 : Implementing the Dimmer and Lighting on a separate ECU								   *
  *******************************************************************************************************/
 #ifndef RTE_H_
 #define RTE_H_
