@@ -6,8 +6,8 @@
 #include "../../LIB/STD_TYPES/STD_TYPES.h"
 #include "../../LIB/BIT_MATH/BIT_MATH.h"
 
-#include "../UART/UART_config.h"
-#include "../UART/UART.h"
+#include "UART_config.h"
+#include "UART.h"
 
 
 #define UDR_T      *((volatile u8*)0x2C)
