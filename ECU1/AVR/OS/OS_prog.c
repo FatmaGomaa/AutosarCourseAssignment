@@ -7,7 +7,7 @@
 #include "../LIB/STD_TYPES/STD_TYPES.h"
 #include "../LIB/BIT_MATH/BIT_MATH.h"
 
-#include "../MCAL/TIMER0/TIMER0.h"
+#include "TIMER0.h"
 
 #include "OS_interface.h"
 

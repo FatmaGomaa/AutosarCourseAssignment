@@ -1,14 +1,9 @@
-/*******************************************************************************************************
- * File name: Timer0.c                   	                                                            *
- *                                                                                                      *
- *                                                                                                      *
- * Description: This file contains the implementation of Timer 0						  		  	    *
- *                                                                                                      *
- * Author: Fatima Gomaa	                                                            			   	    *
- * Date:   April 7, 2020                                                                                *
- * Version 1.0 : Initial Creation 					                                                    *
- *******************************************************************************************************/
-#include "../../LIB/STD_TYPES/STD_TYPES.h"
+/******************************/
+/* Author  : Moustafa Ghareeb */
+/* Version : V1.0             */
+/* Date    : 07-04-2020       */
+/******************************/
+#include "../LIB/STD_TYPES/STD_TYPES.h"
 
 #include "TIMER0.h"
 /*TIMER 0 regs*/

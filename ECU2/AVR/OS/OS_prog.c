@@ -1,18 +1,13 @@
-/*******************************************************************************************************
- * File name: OS.c                   	                                                            *
- *                                                                                                      *
- *                                                                                                      *
- * Description: This file contains the implementation of OS						  		  	    *
- *                                                                                                      *
- * Author: Fatima Gomaa	                                                            			   	    *
- * Date:   April 7, 2020                                                                                *
- * Version 1.0 : Initial Creation 					                                                    *
- *******************************************************************************************************/
+/******************************/
+/* Author  : Moustafa Ghareeb */
+/* Version : V1.0             */
+/* Date    : 07-04-2020       */
+/******************************/
 
 #include "../LIB/STD_TYPES/STD_TYPES.h"
 #include "../LIB/BIT_MATH/BIT_MATH.h"
 
-#include "../MCAL/TIMER0/TIMER0.h"
+#include "TIMER0.h"
 
 #include "OS_interface.h"
 

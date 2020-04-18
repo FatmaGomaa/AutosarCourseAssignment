@@ -3,7 +3,7 @@
 /* Version : V1.0             */
 /* Date    : 07-04-2020       */
 /******************************/
-#include "../../LIB/STD_TYPES/STD_TYPES.h"
+#include "../LIB/STD_TYPES/STD_TYPES.h"
 
 #include "TIMER0.h"
 /*TIMER 0 regs*/
