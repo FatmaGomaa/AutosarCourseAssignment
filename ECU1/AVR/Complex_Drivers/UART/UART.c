@@ -3,9 +3,9 @@
 /* DATE	 : March 9 2020                                                                        */
 /* VERSION: V01                                                                                */
 /***********************************************************************************************/
-#include "STD_TYPES.h"
+#include "../../LIB/STD_TYPES/STD_Types.h"
 
-#include "UART_Interface.h"
+#include "UART.h"
 
 #define UART_UDR_RXB								                *((volatile u8*)0x2C)
 #define UART_UDR_TXB                                                *((volatile u8*)0x2C)

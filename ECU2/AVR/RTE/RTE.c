@@ -15,7 +15,6 @@
 #include "../LIB/BIT_MATH/BIT_MATH.h"
 
 #include "../MCAL/DIO/DIO.h"
-#include "../MCAL/UART/UART.h"
 
 #include "../APP/Light/Light.h"
 #include "../APP/Dimmer/Dimmer.h"
@@ -65,7 +64,7 @@ error_status RTE_CallLightUpdate(u8 status)
 
 void RTE_Task_10MS(void)
 {
-	COMM_RXMainFiunction();
+	COMM_RXMainFunction();
 	Dimmer_UpdateStatus();
 	Light_UpdateLight();
 }

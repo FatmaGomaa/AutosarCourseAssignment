@@ -6,8 +6,6 @@
 #include "./LIB/STD_TYPES/STD_Types.h"
 #include "./LIB/BIT_MATH/BIT_MATH.h"
 #include "./MCAL/DIO/DIO.h"
-#include "MCAL/UART/UART.h"
-#include "./MCAL/TIMER0/TIMER0.h"
 #include "./OS/OS_interface.h"
 #include "./APP/DoorContact/DoorContact.h"
 #include "./APP/LeftDoor/LeftDoor.h"
@@ -28,7 +26,6 @@ void main(void)
     DIO_SetPinDir(LEFT_DOOR_PORT,LEFT_DOOR_PIN,LEFT_DOOR_DIR);
     DIO_SetPinValue(LEFT_DOOR_PORT,LEFT_DOOR_PIN,LEFT_DOOR_MODE);
     DIO_SetPinDir(PORT_D,PIN1,OUTPUT_PIN);
-    UART_Init();
     /*Initializing app components*/
     LeftDoor_Init();
     RightDoor_Init();

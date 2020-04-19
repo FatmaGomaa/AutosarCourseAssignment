@@ -13,6 +13,13 @@
 #define 	UART_PDU_NUM	1
 #define		UART_PDU_IDS	2
 
-Protocol_t	UART_protocol={UART_ID,UART_PDU_NUM,{UART_PDU_IDS},UART_Send,UART_Receive};
+Protocol_t	SysProtocols[MAX_PROTOCOL_NUM]={
+											{
+													.Protocol_ID = UART_ID,
+													.Protocol_PDU_NUM = UART_PDU_NUM,
+													.Protocol_PDU_IDs = {UART_PDU_IDS},
+													.Protocol_Send = UART_Send,
+													.Protocol_Receive = UART_Receive
+											}
+											};
 
-Protocol_t	SysProtocols[MAX_PROTOCOL_NUM]={UART_protocol};

@@ -8,8 +8,9 @@
 
 #include "../../Complex_Drivers/UART/UART.h"
 
-#include "PDURouter.h"
 #include "PDURouter_Config.h"
+#include "PDURouter.h"
+
 
 #define PDU_ID_POSITION	6
 

@@ -13,8 +13,6 @@
 #include "./LIB/STD_TYPES/STD_Types.h"
 #include "./LIB/BIT_MATH/BIT_MATH.h"
 #include "./MCAL/DIO/DIO.h"
-#include "./MCAL/TIMER0/TIMER0.h"
-#include "./MCAL/UART/UART.h"
 #include "./OS/OS_interface.h"
 #include "./APP/Light/Light.h"
 #include "./APP/Dimmer/Dimmer.h"
@@ -28,7 +26,6 @@ void main(void)
     DIO_SetPinDir(LIGHT_PORT,LIGHT_PIN,LIGHT_DIR);
     DIO_SetPinDir(PORT_D,PIN0,INPUT_FLOATING);
     /*Initializing app components*/
-	UART_Init();
     Dimmer_Init();
     Light_Init();
     /*Creating OS tasks*/

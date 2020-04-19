@@ -9,7 +9,7 @@
 #include "../PDURouter/PDURouter.h"
 
 #include "COM.h"
-#include "COM_Config.h"
+#include "COM_LConfig.h"
 
 #define BYTE_SIZE 		8
 #define PDU_ID_POSITION	6

@@ -7,7 +7,6 @@
 #include "../LIB/BIT_MATH/BIT_MATH.h"
 
 #include "../MCAL/DIO/DIO.h"
-#include "../MCAL/UART/UART.h"
 
 #include "../APP/DoorContact/DoorContact.h"
 #include "../APP/LeftDoor/LeftDoor.h"

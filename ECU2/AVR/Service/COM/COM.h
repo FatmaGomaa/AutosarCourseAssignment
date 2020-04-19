@@ -8,7 +8,7 @@
 
 error_status COMM_Init(void);
 error_status COMM_Send(u8 signalID,u8 data);
-error_status COMM_Recieve(u8 signalID,u8* data);
+error_status COMM_Receive(u8 signalID,u8* data);
 void COMM_TXMainFunction(void);
 void COMM_RXMainFunction(void);
 
