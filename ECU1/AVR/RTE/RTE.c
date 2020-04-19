@@ -13,12 +13,14 @@
 #include "../APP/LeftDoor/LeftDoor.h"
 #include "../APP/RightDoor/RightDoor.h"
 
+#include "../Service/COM/COM.h"
+
 #include "RTE.h"
 
+#define DOOR_STATUS_SIGNAL_ID	0
 
 static u8 Rte_RightDoorStatus ;
 static u8 Rte_LeftDoorStatus  ;
-
 
 /*Send-Rec*/
 
@@ -39,8 +41,7 @@ error_status RTE_WriteLeftDoorStatus(u8 status)
 error_status RTE_WriteDoorStatus(u8 status)
 {
 	error_status local_error = E_OK;
-	local_error=UART_TransmitDataSynch(status);
-
+	local_error = COMM_Send(DOOR_STATUS_SIGNAL_ID, status);
 	return local_error;
 }
 
@@ -85,4 +86,5 @@ void RTE_Task_02MS(void)
 void RTE_Task_10MS(void)
 {
 	DoorContact_UpdateStatus();
+	COMM_TXMainFunction();
 }

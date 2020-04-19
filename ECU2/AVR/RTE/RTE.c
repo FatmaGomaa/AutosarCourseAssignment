@@ -20,11 +20,14 @@
 #include "../APP/Light/Light.h"
 #include "../APP/Dimmer/Dimmer.h"
 
+#include "../Service/COM/COM.h"
+
 #include "RTE.h"
 
 
-static u8 Rte_LightStatus     ;
+static u8 Rte_LightStatus;
 
+#define DOOR_STATUS_SIGNAL_ID	0x02
 
 /*Send-Rec*/
 
@@ -39,7 +42,7 @@ error_status RTE_WriteLightStatus(u8 status)
 error_status RTE_ReadDoorStatus(u8* status)
 {
 	error_status local_error = E_OK;
-	local_error = UART_ReceiveSynch(status);
+	local_error = COMM_Receive(DOOR_STATUS_SIGNAL_ID, status);
 	return local_error;
 }
 
@@ -62,6 +65,7 @@ error_status RTE_CallLightUpdate(u8 status)
 
 void RTE_Task_10MS(void)
 {
+	COMM_RXMainFiunction();
 	Dimmer_UpdateStatus();
 	Light_UpdateLight();
 }

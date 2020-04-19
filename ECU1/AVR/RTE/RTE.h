@@ -19,10 +19,6 @@
 #define LEFT_DOOR_DIR		 INPUT_PIN
 #define LEFT_DOOR_MODE		 INPUT_PULLUP
 
-#define LIGHT_PORT			 PORT_A
-#define LIGHT_PIN			 PIN2
-#define LIGHT_DIR			 OUTPUT_PIN
-
 error_status RTE_WriteRightDoorStatus(u8 status);
 error_status RTE_WriteLeftDoorStatus(u8 status);
 error_status RTE_WriteDoorStatus(u8 status);
